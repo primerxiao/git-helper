@@ -1,4 +1,4 @@
-package sample;
+package com.primer.githelper;
 
 import org.apache.commons.lang3.StringUtils;
 import org.ini4j.Ini;

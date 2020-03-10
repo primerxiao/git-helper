@@ -1,14 +1,6 @@
-package sample;
+package com.primer.githelper;
 
 import com.alibaba.excel.EasyExcel;
-import com.alibaba.excel.ExcelWriter;
-import com.alibaba.excel.support.ExcelTypeEnum;
-import com.alibaba.excel.write.metadata.WriteSheet;
-import com.alibaba.excel.write.metadata.WriteWorkbook;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.sun.corba.se.impl.ior.WireObjectKeyTemplate;
-import com.sun.deploy.uitoolkit.impl.fx.ui.FXMessageDialog;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -146,9 +138,13 @@ public class Controller implements Initializable {
             Map<String, String> map = System.getenv();
             String userName = map.get("USERNAME");// 获取用户名
             String fileName ="C:\\Users\\"+userName+"\\Documents\\"+LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd-HHmmss"))+".xlsx";
+
+            String path = this.getClass().getClassLoader().getResource("//").getPath().replaceFirst("/","");
+            String tpFileName = path + "template.xlsx";
+
             // 这里 需要指定写用哪个class去读，然后写到第一个sheet，名字为模板 然后文件流会自动关闭
             // 如果这里想使用03 则 传入excelType参数即可
-            EasyExcel.write(fileName, GitCommitInfo.class).sheet("代码清单").doWrite(gitCommitInfos);
+            EasyExcel.write(fileName, GitCommitInfo.class).withTemplate(tpFileName).sheet("代码清单").needHead(false).doWrite(gitCommitInfos);
             exportTipLabel.setText(fileName);
             exportTipLabel.setManaged(true);
             openExportExcelBtn.setManaged(true);
@@ -204,4 +200,5 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }
     }
+
 }

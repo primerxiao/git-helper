@@ -1,4 +1,4 @@
-package sample;
+package com.primer.githelper;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

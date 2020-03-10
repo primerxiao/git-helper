@@ -1,4 +1,4 @@
-package sample;
+package com.primer.githelper;
 
 import lombok.Data;
 

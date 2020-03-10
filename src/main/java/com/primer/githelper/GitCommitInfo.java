@@ -1,4 +1,4 @@
-package sample;
+package com.primer.githelper;
 
 import com.alibaba.excel.annotation.ExcelIgnore;
 import com.alibaba.excel.annotation.ExcelProperty;
